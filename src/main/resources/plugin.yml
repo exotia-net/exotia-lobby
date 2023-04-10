@@ -1,0 +1,8 @@
+name: ExotiaLobby
+version: 1.0
+author: exotia.net Team
+website: https://exotia.net/
+description: Spigot Plugin for Exotia.net Lobbies
+main: net.exotia.plugins.lobby.Lobby
+api-version: 1.19
+softdepend: [ PlaceholderAPI, Oraxen ]

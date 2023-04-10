@@ -1,2 +1,2 @@
 # ExotiaLobby
-Minecraft Plugin for Exotia.net Lobbies
+Spigot Plugin for Exotia.net Lobbies

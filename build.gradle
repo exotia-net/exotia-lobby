@@ -61,7 +61,9 @@ shadowJar {
     relocate 'net.kyori:adventure-platform-bukkit:4.3.0', 'net.exotia.plugins.lobby.adventure-bukkit'
     relocate 'net.kyori:adventure-text-minimessage:4.13.0', 'net.exotia.plugins.adventure-minimessage'
     relocate 'net.kyori:adventure-text-serializer-legacy:4.13.0', 'net.exotia.plugins.adventure-serializer'
+    
     minimize()
+    
     setArchiveFileName(project.name + '-' + project.version + '.jar')
     setArchiveClassifier(null)
 }

@@ -28,7 +28,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.stream.Stream;
 
-public final class Lobby extends JavaPlugin {
+public final class LobbyPlugin extends JavaPlugin {
     private final Injector injector = OkaeriInjector.create();
     @Getter
     private static Plugin plugin;

@@ -1,6 +1,6 @@
 package net.exotia.plugins.lobby.utils;
 
-import net.exotia.plugins.lobby.Lobby;
+import net.exotia.plugins.lobby.LobbyPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -15,12 +15,12 @@ public class UtilVanish {
     }
 
     public static void hidePlayers(Player player) {
-        for (Player target : Bukkit.getOnlinePlayers()) player.hidePlayer(Lobby.getPlugin(), target);
+        for (Player target : Bukkit.getOnlinePlayers()) player.hidePlayer(LobbyPlugin.getPlugin(), target);
         hiddenPlayers.put(player.getUniqueId(), true);
     }
 
     public static void showPlayers(Player player) {
-        for (Player target : Bukkit.getOnlinePlayers()) player.showPlayer(Lobby.getPlugin(), target);
+        for (Player target : Bukkit.getOnlinePlayers()) player.showPlayer(LobbyPlugin.getPlugin(), target);
         hiddenPlayers.remove(player.getUniqueId());
     }
 

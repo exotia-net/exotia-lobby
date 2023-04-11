@@ -1,7 +1,7 @@
 package net.exotia.plugins.lobby.utils;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import net.exotia.plugins.lobby.Lobby;
+import net.exotia.plugins.lobby.LobbyPlugin;
 import net.exotia.plugins.lobby.configuration.ConfigurationMessage;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -14,21 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UtilMessage {
-    private static String replacePrefix(String message, ConfigurationMessage configurationMessage) {
-        return message.replace("%prefix%", configurationMessage.getPrefix());
-    }
-
     private static Component replacePlaceholders(String message, String... values) {
         for (int i = 1; i <= values.length; i++) message = message.replace("%value_" + i + "%", values[i - 1]);
         return MiniMessage.miniMessage().deserialize(message.replace("&", "").replace("§f", ""));
     }
 
     public static void sendMessage(CommandSender sender, String message, String... values) {
-        Lobby.getAudiences().sender(sender).sendMessage(replacePlaceholders(message, values));
+        LobbyPlugin.getAudiences().sender(sender).sendMessage(replacePlaceholders(message, values));
     }
 
     public static void sendMessage(Player player, String message, String... values) {
-        Lobby.getAudiences().player(player).sendMessage(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
+        LobbyPlugin.getAudiences().player(player).sendMessage(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
     }
 
     public static String getMessage(String message) {

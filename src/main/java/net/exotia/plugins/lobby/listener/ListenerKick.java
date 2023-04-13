@@ -10,8 +10,6 @@ import org.bukkit.event.player.PlayerKickEvent;
 public class ListenerKick implements Listener {
     @Inject
     private ConfigurationMessage configurationMessage;
-    @Inject
-    private UtilMessage utilMessage;
 
     @EventHandler
     public void onPlayerKick(PlayerKickEvent event) {

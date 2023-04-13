@@ -2,10 +2,10 @@ package net.exotia.plugins.lobby.utils;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.exotia.plugins.lobby.LobbyPlugin;
-import net.exotia.plugins.lobby.configuration.ConfigurationMessage;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.title.Title;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -19,12 +19,21 @@ public class UtilMessage {
         return MiniMessage.miniMessage().deserialize(message.replace("&", "").replace("§f", ""));
     }
 
+    private static Component replacePlaceholders(String message, List<String> values) {
+        for (int i = 1; i <= values.size(); i++) message = message.replace("%value_" + i + "%", values.get(i - 1));
+        return MiniMessage.miniMessage().deserialize(message.replace("&", "").replace("§f", ""));
+    }
+
     public static void sendMessage(CommandSender sender, String message, String... values) {
         LobbyPlugin.getAudiences().sender(sender).sendMessage(replacePlaceholders(message, values));
     }
 
     public static void sendMessage(Player player, String message, String... values) {
         LobbyPlugin.getAudiences().player(player).sendMessage(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
+    }
+
+    public static void sendTitle(Player player, String title, List<String> titleValues, String subtitle, List<String> subtitleValues) {
+        LobbyPlugin.getAudiences().player(player).showTitle(Title.title(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, title), titleValues), replacePlaceholders(PlaceholderAPI.setPlaceholders(player, subtitle), subtitleValues)));
     }
 
     public static String getMessage(String message) {

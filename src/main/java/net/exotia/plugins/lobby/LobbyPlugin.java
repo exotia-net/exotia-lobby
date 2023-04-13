@@ -40,17 +40,16 @@ public final class LobbyPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        injector.registerInjectable(this);
-        injector.registerInjectable(injector);
-
         plugin = this;
         audiences = BukkitAudiences.create(this);
+
+        injector.registerInjectable(plugin);
+        injector.registerInjectable(injector);
+
         setupConfiguration();
         setupUtils();
         setupCommands();
         setupEvents();
-
-        getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
     }
 
     @Override
@@ -69,7 +68,7 @@ public final class LobbyPlugin extends JavaPlugin {
     }
 
     private void setupUtils() {
-        injector.registerInjectable(injector.createInstance(UtilMessage.class));
+        getServer().getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
     }
 
     private void setupCommands() {

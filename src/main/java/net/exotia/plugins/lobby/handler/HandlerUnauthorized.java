@@ -11,11 +11,9 @@ import org.bukkit.command.CommandSender;
 public class HandlerUnauthorized implements PermissionHandler<CommandSender> {
     @Inject
     private ConfigurationMessage configurationMessage;
-    @Inject
-    private UtilMessage utilMessage;
 
     @Override
     public void handle(CommandSender sender, LiteInvocation invocation, RequiredPermissions requiredPermissions) {
-        utilMessage.sendMessage(sender, configurationMessage.getCommandsNoPermission().getFailed());
+        UtilMessage.sendMessage(sender, configurationMessage.getCommandsNoPermission().getFailed());
     }
 }

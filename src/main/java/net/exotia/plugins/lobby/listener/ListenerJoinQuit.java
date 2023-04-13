@@ -7,6 +7,9 @@ import net.exotia.plugins.lobby.configuration.ConfigurationPlugin;
 import net.exotia.plugins.lobby.gui.GuiButton;
 import net.exotia.plugins.lobby.utils.UtilMessage;
 import net.exotia.plugins.lobby.utils.UtilVanish;
+import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,9 +17,14 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class ListenerJoinQuit implements Listener {
     @Inject
@@ -30,8 +38,16 @@ public class ListenerJoinQuit implements Listener {
     public void onJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         event.setJoinMessage(UtilMessage.getMessage(player, configurationMessage.getEventsConnect().getJoin(), player.getDisplayName()));
-        setupHotbar(player.getInventory(), configurationGui);
+        if (!player.hasPermission("exotia.lobby.command.server")) return;
         player.teleport(configurationPlugin.getLocation());
+        setupHotbar(player.getInventory(), configurationGui);
+        UtilMessage.sendTitle(player, "Test", new ArrayList<>(), "Brah", new ArrayList<>());
+        ItemStack headItem = new ItemStack(Material.CARVED_PUMPKIN);
+        ItemMeta meta = headItem.getItemMeta();
+        AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "generic.movementSpeed", -0.1, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
+        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, modifier);
+        headItem.setItemMeta(meta);
+        player.getInventory().setItem(EquipmentSlot.HEAD, headItem);
     }
 
     @EventHandler

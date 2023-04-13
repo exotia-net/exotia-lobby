@@ -15,8 +15,6 @@ public class ListenerChat implements Listener {
     private ConfigurationPlugin configurationPlugin;
     @Inject
     private ConfigurationMessage configurationMessage;
-    @Inject
-    private UtilMessage utilMessage;
 
     @EventHandler
     public void onChatEvent(AsyncPlayerChatEvent event) {

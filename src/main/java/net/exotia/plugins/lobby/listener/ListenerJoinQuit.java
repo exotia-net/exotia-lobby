@@ -1,6 +1,7 @@
 package net.exotia.plugins.lobby.listener;
 
 import eu.okaeri.injector.annotation.Inject;
+import io.th0rgal.oraxen.api.OraxenItems;
 import net.exotia.plugins.lobby.configuration.ConfigurationGui;
 import net.exotia.plugins.lobby.configuration.ConfigurationMessage;
 import net.exotia.plugins.lobby.configuration.ConfigurationPlugin;
@@ -10,6 +11,8 @@ import net.exotia.plugins.lobby.utils.UtilVanish;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,9 +48,12 @@ public class ListenerJoinQuit implements Listener {
         ItemStack headItem = new ItemStack(Material.CARVED_PUMPKIN);
         ItemMeta meta = headItem.getItemMeta();
         AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "generic.movementSpeed", -0.1, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-        meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, modifier);
+        meta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, modifier);
         headItem.setItemMeta(meta);
         player.getInventory().setItem(EquipmentSlot.HEAD, headItem);
+        ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(player.getLocation(), EntityType.ARMOR_STAND);
+        armorStand.getEquipment().setHelmet(OraxenItems.getItemById("czapka_helm_gornika").build());
+        player.addPassenger(armorStand);
     }
 
     @EventHandler

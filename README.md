@@ -1,2 +1,2 @@
-# ExotiaLobby
-Spigot Plugin for Exotia.net Lobbies
+# exotia-lobby
+Spigot Plugin for Exotia.net lobbies

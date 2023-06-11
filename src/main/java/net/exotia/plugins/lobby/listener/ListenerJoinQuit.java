@@ -1,12 +1,16 @@
 package net.exotia.plugins.lobby.listener;
 
 import eu.okaeri.injector.annotation.Inject;
+import net.exotia.plugins.lobby.LobbyPlugin;
 import net.exotia.plugins.lobby.configuration.ConfigurationGui;
 import net.exotia.plugins.lobby.configuration.ConfigurationMessage;
 import net.exotia.plugins.lobby.configuration.ConfigurationPlugin;
 import net.exotia.plugins.lobby.gui.GuiButton;
 import net.exotia.plugins.lobby.utils.UtilMessage;
 import net.exotia.plugins.lobby.utils.UtilVanish;
+import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -16,11 +20,20 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 public class ListenerJoinQuit implements Listener {
+    @Inject
+    private LobbyPlugin lobbyPlugin;
     @Inject
     private ConfigurationPlugin configurationPlugin;
     @Inject
@@ -32,18 +45,9 @@ public class ListenerJoinQuit implements Listener {
     public void onJoinEvent(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         event.setJoinMessage(UtilMessage.getMessage(player, configurationMessage.getEventsConnect().getJoin(), player.getDisplayName()));
-        //if (!player.hasPermission("exotia.lobby.command.server")) return;
         player.teleport(configurationPlugin.getLocation());
+        if (!player.hasPermission("exotia.lobby.command.server")) return;
         setupHotbar(player.getInventory(), configurationGui);
-//        UtilMessage.sendTitle(player, "Test", new ArrayList<>(), "Brah", new ArrayList<>());
-//        ItemStack headItem = new ItemStack(Material.CARVED_PUMPKIN);
-//        ItemMeta meta = headItem.getItemMeta();
-//        AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "generic.movementSpeed", -0.1, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HEAD);
-//        meta.addAttributeModifier(Attribute.GENERIC_MOVEMENT_SPEED, modifier);
-//        headItem.setItemMeta(meta);
-//        player.getInventory().setItem(EquipmentSlot.HEAD, headItem);
-        ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(player.getLocation(), EntityType.ARMOR_STAND);
-        player.addPassenger(armorStand);
     }
 
     @EventHandler

@@ -34,6 +34,7 @@ public final class LobbyPlugin extends JavaPlugin {
     private static Plugin plugin;
     @Getter
     private static BukkitAudiences audiences;
+    private final ConfigurationFactory configurationFactory = new ConfigurationFactory(this.getDataFolder());
     private ConfigurationPlugin configurationPlugin;
     private ConfigurationMessage configurationMessage;
     private ConfigurationGui configurationGui;
@@ -45,6 +46,7 @@ public final class LobbyPlugin extends JavaPlugin {
 
         injector.registerInjectable(plugin);
         injector.registerInjectable(injector);
+        injector.registerInjectable(configurationFactory);
 
         setupConfiguration();
         setupUtils();
@@ -58,12 +60,12 @@ public final class LobbyPlugin extends JavaPlugin {
     }
 
     private void setupConfiguration() {
-        ConfigurationFactory configurationFactory = new ConfigurationFactory(this.getDataFolder());
         configurationPlugin = configurationFactory.produce(ConfigurationPlugin.class, "config.yml");
-        injector.registerInjectable(configurationPlugin);
         configurationMessage = configurationFactory.produce(ConfigurationMessage.class, "messages.yml");
-        injector.registerInjectable(configurationMessage);
         configurationGui = configurationFactory.produce(ConfigurationGui.class, "guis.yml");
+
+        injector.registerInjectable(configurationPlugin);
+        injector.registerInjectable(configurationMessage);
         injector.registerInjectable(configurationGui);
     }
 
@@ -96,6 +98,7 @@ public final class LobbyPlugin extends JavaPlugin {
 
     private void cleanUp() {
         getServer().getMessenger().unregisterOutgoingPluginChannel(this);
+
         configurationPlugin.save();
         configurationMessage.save();
         configurationGui.save();

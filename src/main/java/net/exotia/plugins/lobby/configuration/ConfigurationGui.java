@@ -20,7 +20,7 @@ public class ConfigurationGui extends OkaeriConfig {
     private HashMap<String, GuiConfiguration> setupGuis() {
         HashMap<String, GuiConfiguration> guis = new HashMap<>();
         guis.put("server", new GuiServer());
-        guis.put("cosmetics", new GuiCosmetics());
+//        guis.put("cosmetics", new GuiCosmetics());
         return guis;
     }
 
@@ -73,87 +73,87 @@ public class ConfigurationGui extends OkaeriConfig {
         return buttons;
     }
 
-    private HashMap<Integer, GuiButton> setupCosmeticsButtons() {
-        HashMap<Integer, GuiButton> buttons = new HashMap<>();
-        buttons.put(0, GuiButton.builder()
-                .oraxenID("jedzenie_owoc_truskawka")
-                .displayName("Truskawka")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("jedzenie_owoc_truskawka").build())
-                .build()
-        );
-        buttons.put(1, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(2, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(3, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(4, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(5, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(6, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(7, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(8, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(9, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        buttons.put(10, GuiButton.builder()
-                .oraxenID("czapka_helm_gornika")
-                .displayName("Mycka Grubiorza")
-                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
-                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
-                .build()
-        );
-        return buttons;
-    }
+//    private HashMap<Integer, GuiButton> setupCosmeticsButtons() {
+//        HashMap<Integer, GuiButton> buttons = new HashMap<>();
+//        buttons.put(0, GuiButton.builder()
+//                .oraxenID("jedzenie_owoc_truskawka")
+//                .displayName("Truskawka")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("jedzenie_owoc_truskawka").build())
+//                .build()
+//        );
+//        buttons.put(1, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(2, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(3, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(4, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(5, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(6, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(7, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(8, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(9, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        buttons.put(10, GuiButton.builder()
+//                .oraxenID("czapka_helm_gornika")
+//                .displayName("Mycka Grubiorza")
+//                .lore(List.of("鵭 <gradient:#4fa943:#9ec52f><bold>Odblokowane!</bold></gradient>", "<gray>Pozwala na bezpieczne", "<gray>przemierzanie mrocznych", "<gray>korytarzy i jaskiń."))
+//                .action(GuiAction.builder().name("set_item").value("czapka_helm_gornika").build())
+//                .build()
+//        );
+//        return buttons;
+//    }
 
     @Getter
     public static class GuiConfiguration extends OkaeriConfig {
@@ -174,24 +174,24 @@ public class ConfigurationGui extends OkaeriConfig {
         private HashMap<Integer, GuiButton> buttons = setupServerButtons();
     }
 
-    @Getter
-    public class GuiCosmetics extends GuiConfiguration {
-        private String title = "✟ꟺ";
-        private int size = 3;
-        private List<Integer> slotsEmpty = Arrays.asList(0, 1, 7, 8, 9, 10, 16, 17, 18, 20, 21, 22, 23, 24, 26);
-        private int itemsPerPage = 10;
-        private GuiButton buttonNext = GuiButton.builder()
-                .slots(List.of(25))
-                .oraxenID("ksiazka_wybor")
-                .displayName("<gradient:#4fa943:#9ec52f><bold>Dalej</bold></gradient>")
-                .lore(Arrays.asList("<gray>Kliknij, aby otworzyć", "<gray>następną stronę!"))
-                .build();
-        private GuiButton buttonPrevious = GuiButton.builder()
-                .slots(List.of(19))
-                .oraxenID("ksiazka_wybor")
-                .displayName("<gradient:#4fa943:#9ec52f><bold>Powróć</bold></gradient>")
-                .lore(Arrays.asList("<gray>Kliknij, aby otworzyć", "<gray>poprzednią stronę!"))
-                .build();
-        private HashMap<Integer, GuiButton> buttons = setupCosmeticsButtons();
-    }
+//    @Getter
+//    public class GuiCosmetics extends GuiConfiguration {
+//        private String title = "✟ꟺ";
+//        private int size = 3;
+//        private List<Integer> slotsEmpty = Arrays.asList(0, 1, 7, 8, 9, 10, 16, 17, 18, 20, 21, 22, 23, 24, 26);
+//        private int itemsPerPage = 10;
+//        private GuiButton buttonNext = GuiButton.builder()
+//                .slots(List.of(25))
+//                .oraxenID("ksiazka_wybor")
+//                .displayName("<gradient:#4fa943:#9ec52f><bold>Dalej</bold></gradient>")
+//                .lore(Arrays.asList("<gray>Kliknij, aby otworzyć", "<gray>następną stronę!"))
+//                .build();
+//        private GuiButton buttonPrevious = GuiButton.builder()
+//                .slots(List.of(19))
+//                .oraxenID("ksiazka_wybor")
+//                .displayName("<gradient:#4fa943:#9ec52f><bold>Powróć</bold></gradient>")
+//                .lore(Arrays.asList("<gray>Kliknij, aby otworzyć", "<gray>poprzednią stronę!"))
+//                .build();
+//        private HashMap<Integer, GuiButton> buttons = setupCosmeticsButtons();
+//    }
 }

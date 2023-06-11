@@ -5,6 +5,7 @@ import io.th0rgal.oraxen.api.events.OraxenFurnitureBreakEvent;
 import io.th0rgal.oraxen.api.events.OraxenFurniturePlaceEvent;
 import net.exotia.plugins.lobby.configuration.ConfigurationPlugin;
 import org.bukkit.GameRule;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -158,7 +159,8 @@ public class ListenerSpawn implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        player.getPassengers().forEach(entity -> entity.teleport(player));
+        Location location = player.getLocation();
+        player.getPassengers().forEach(entity -> entity.setRotation(location.getYaw(), location.getPitch()));
 //        if (player.hasPermission("exotia.lobby.bypass")) return;
 //        if (player.getLocation().getY() > configurationPlugin.getLimit()) return;
 //        player.teleport(configurationPlugin.getLocation());

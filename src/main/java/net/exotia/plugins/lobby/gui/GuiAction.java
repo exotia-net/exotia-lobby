@@ -46,14 +46,14 @@ public class GuiAction extends OkaeriConfig {
             public void runAction(Player player, ConfigurationGui configurationGui, ConfigurationMessage configurationMessage, String value) {
                 GuiType.valueOf(value.toUpperCase()).open(player, configurationGui, configurationMessage);
             }
-        },
-        SET_ITEM {
-            public void runAction(Player player, ConfigurationGui configurationGui, ConfigurationMessage configurationMessage, String value) {
-                ItemStack item = OraxenItems.getItemById(value).build();
-                if (item != null) player.getInventory().setItem(EquipmentSlot.HEAD, item);
-                UtilMessage.playSound(player, configurationMessage.getSounds().getClick());
-            }
         };
+//        SET_ITEM {
+//            public void runAction(Player player, ConfigurationGui configurationGui, ConfigurationMessage configurationMessage, String value) {
+//                ItemStack item = OraxenItems.getItemById(value).build();
+//                if (item != null) player.getInventory().setItem(EquipmentSlot.HEAD, item);
+//                UtilMessage.playSound(player, configurationMessage.getSounds().getClick());
+//            }
+//        };
 
         public abstract void runAction(Player player, ConfigurationGui configurationGui, ConfigurationMessage configurationMessage, String value);
     }

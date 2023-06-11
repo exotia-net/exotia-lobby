@@ -156,11 +156,12 @@ public class ListenerSpawn implements Listener {
     }
 
     @EventHandler
-    public void onPlayerFall(PlayerMoveEvent event) {
+    public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("exotia.lobby.bypass")) return;
-        if (player.getLocation().getY() > configurationPlugin.getLimit()) return;
-        player.teleport(configurationPlugin.getLocation());
+        player.getPassengers().forEach(entity -> entity.teleport(player));
+//        if (player.hasPermission("exotia.lobby.bypass")) return;
+//        if (player.getLocation().getY() > configurationPlugin.getLimit()) return;
+//        player.teleport(configurationPlugin.getLocation());
     }
 
     @EventHandler

@@ -17,14 +17,7 @@ public class HandlerInvalid implements InvalidUsageHandler<CommandSender> {
 
     @Override
     public void handle(CommandSender sender, LiteInvocation invocation, Schematic schematic) {
-        List<String> schematics = schematic.getSchematics();
-        if (schematics.size() == 1) {
-            UtilMessage.sendMessage(sender, configurationMessage.getCommandsInvalid().getInvalid());
-            UtilMessage.playSound((Player) sender, configurationMessage.getSounds().getError());
-            return;
-        }
-        UtilMessage.sendMessage(sender, configurationMessage.getCommandsInvalid().getInvalidUsage());
+        UtilMessage.sendMessage(sender, configurationMessage.getCommandsInvalid().getInvalid());
         UtilMessage.playSound((Player) sender, configurationMessage.getSounds().getError());
-        schematics.forEach(sch -> sender.sendMessage("&8 >> &7" + sch));
     }
 }

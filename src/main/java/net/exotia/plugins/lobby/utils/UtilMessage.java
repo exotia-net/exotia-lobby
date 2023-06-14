@@ -19,11 +19,6 @@ public class UtilMessage {
         return MiniMessage.miniMessage().deserialize(message.replace("&", "").replace("§f", ""));
     }
 
-    private static Component replacePlaceholders(String message, List<String> values) {
-        for (int i = 1; i <= values.size(); i++) message = message.replace("%value_" + i + "%", values.get(i - 1));
-        return MiniMessage.miniMessage().deserialize(message.replace("&", "").replace("§f", ""));
-    }
-
     public static void sendMessage(CommandSender sender, String message, String... values) {
         LobbyPlugin.getAudiences().sender(sender).sendMessage(replacePlaceholders(message, values));
     }
@@ -32,28 +27,26 @@ public class UtilMessage {
         LobbyPlugin.getAudiences().player(player).sendMessage(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
     }
 
-    public static void sendTitle(Player player, String title, List<String> titleValues, String subtitle, List<String> subtitleValues) {
-        LobbyPlugin.getAudiences().player(player).showTitle(Title.title(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, title), titleValues), replacePlaceholders(PlaceholderAPI.setPlaceholders(player, subtitle), subtitleValues)));
-    }
-
     public static String getMessage(String message) {
         return LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<white>" + message));
     }
 
-    public static List<String> getMessages(List<String> messages) {
-        List<String> serializedMessages = new ArrayList<>();
-        if (messages == null) return serializedMessages;
-        for (String message : messages)
-            serializedMessages.add(LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<white>" + message)));
-        return serializedMessages;
-    }
-
-    public static Component getComponent(String message) {
-        return MiniMessage.miniMessage().deserialize(message.replace("&", "").replace("§f", ""));
-    }
-
     public static String getMessage(Player player, String message, String... values) {
         return LegacyComponentSerializer.legacySection().serialize(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
+    }
+
+    public static Component getComponent(Player player, String message, String... values) {
+        return replacePlaceholders(PlaceholderAPI.setPlaceholders(player, "<white>" + message), values);
+    }
+
+    public static String convertComponent(String string, String... values) {
+        return LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<white>" + string, values));
+    }
+
+    public static List<String> convertComponent(List<String> list, String... values) {
+        List<String> newList = new ArrayList<>();
+        for (String line : list) newList.add(LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<gray>" + line, values)));
+        return newList;
     }
 
     public static void playSound(Player player, String soundName) {

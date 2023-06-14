@@ -25,11 +25,6 @@ public class ListenerSpawn implements Listener {
     @Inject
     private ConfigurationPlugin configurationPlugin;
 
-    @EventHandler
-    public void onWorldLoad(WorldInitEvent event) {
-        setupGameRules(event.getWorld());
-    }
-
     public void setupGameRules(World world) {
         if (world == null) return;
         world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
@@ -65,6 +60,11 @@ public class ListenerSpawn implements Listener {
         world.setGameRule(GameRule.LOG_ADMIN_COMMANDS, false);
         world.setGameRule(GameRule.KEEP_INVENTORY, true);
         world.setGameRule(GameRule.MAX_ENTITY_CRAMMING, 99999);
+    }
+
+    @EventHandler
+    public void onWorldLoad(WorldInitEvent event) {
+        setupGameRules(event.getWorld());
     }
 
     @EventHandler
@@ -151,36 +151,21 @@ public class ListenerSpawn implements Listener {
     }
 
     @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        if (player.hasPermission("exotia.lobby.bypass")) return;
+        if (player.getLocation().getY() > configurationPlugin.getLimit()) return;
+        player.teleport(configurationPlugin.getLocation());
+    }
+
+    @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         if (event.getPlayer().getBedSpawnLocation() == null)
             event.setRespawnLocation(configurationPlugin.getLocation());
     }
 
     @EventHandler
-    public void onPlayerMove(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-        Location location = player.getLocation();
-        player.getPassengers().forEach(entity -> entity.setRotation(location.getYaw(), location.getPitch()));
-//        if (player.hasPermission("exotia.lobby.bypass")) return;
-//        if (player.getLocation().getY() > configurationPlugin.getLimit()) return;
-//        player.teleport(configurationPlugin.getLocation());
-    }
-
-    @EventHandler
     public void onPlayerDeath(PlayerRespawnEvent event) {
         event.setRespawnLocation(configurationPlugin.getLocation());
     }
-
-//    @EventHandler
-//    public void onPlayerToggleSneak(PlayerToggleSneakEvent event) {
-//        Player player = event.getPlayer();
-//
-//        if (!player.isSneaking()) {
-//            if (GameState.isState(GameState.IN_GAME)) {
-//                Location location = player.getLocation();
-//                location.add(0, 1, 0);
-//                player.teleport(location);
-//            }
-//        }
-//    }
 }

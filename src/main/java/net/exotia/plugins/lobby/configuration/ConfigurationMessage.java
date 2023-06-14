@@ -56,8 +56,8 @@ public class ConfigurationMessage extends OkaeriConfig {
     public class CommandsServer extends OkaeriConfig {
         private String success = "鱂 Zostałeś/aś przeniesiony/a na <gradient:#4fa943:#9ec52f><bold><bold>%value_1%!</bold></gradient>";
         private String error = "鱂 Wystąpił <gradient:#4fa943:#9ec52f><bold>błąd</bold></gradient> przy przenoszeniu na <gradient:#4fa943:#9ec52f><bold>%value_1%!</bold></gradient>";
-        private String invalid = "鱂 Serwer, który wpisałeś/aś nie <gradient:#4fa943:#9ec52f><bold>istnieje!</bold></gradient>";
-        private String notFound = "鱂 Serwer, który wpisałeś/aś nie jest <gradient:#4fa943:#9ec52f><bold>dostępny!</bold></gradient>";
+        private String notFound = "鱂 Serwer, na który próbujesz się przenieść <gradient:#4fa943:#9ec52f><bold>nie istnieje!</bold></gradient>";
+        private String invalid = "鱂 Serwer, na który próbujesz się przenieść jest <gradient:#4fa943:#9ec52f><bold>niedostępny!</bold></gradient>";
     }
 
     @Getter
@@ -74,7 +74,7 @@ public class ConfigurationMessage extends OkaeriConfig {
 
     @Getter
     public class EventsDisconnect extends OkaeriConfig {
-        private String timeout = "<gradient:#4fa943:#9ec52f><bold>ᴇхᴏᴛɪᴀ.ɴᴇᴛ</bold></gradient>\n\nMinął czas na <gradient:#4fa943:#9ec52f><bold>wybór trybu!</bold></gradient>\nPołącz się <gradient:#4fa943:#9ec52f><bold>ponownie!</bold></gradient>\n\n<gradient:#4fa943:#9ec52f><bold>ᴅᴄ.ᴇхᴏᴛɪᴀ.ɴᴇᴛ</bold></gradient>";
+        private String timeout = "<gradient:#4fa943:#9ec52f><bold>ᴇхᴏᴛɪᴀ.ɴᴇᴛ</bold></gradient>\n\nᴍɪɴᴀʟ ᴄᴢᴀѕ ɴᴀ <gradient:#4fa943:#9ec52f><bold>ᴡʏʙᴏʀ ᴛʀʏʙᴜ!</bold></gradient>\nᴘᴏʟᴀᴄᴢ ѕɪᴇ <gradient:#4fa943:#9ec52f><bold>ᴘᴏɴᴏᴡɴɪᴇ!</bold></gradient>\n\n<gradient:#4fa943:#9ec52f><bold>ᴅᴄ.ᴇхᴏᴛɪᴀ.ɴᴇᴛ</bold></gradient>";
     }
 
     @Getter

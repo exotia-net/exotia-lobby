@@ -3,12 +3,9 @@ package net.exotia.plugins.lobby.configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
 import lombok.Getter;
-import net.exotia.plugins.lobby.gui.GuiAction;
-import net.exotia.plugins.lobby.gui.GuiButton;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +15,8 @@ public class ConfigurationPlugin extends OkaeriConfig {
     private Location location = new Location(Bukkit.getWorld("world"), -4.5, 63.0, -1.5, 180, -5);
     @Comment("Limit")
     private int limit = 45;
+    @Comment("Server list")
+    private List<String> serverList = List.of("survival");
     @Comment("Chat formats")
     private HashMap<String, String> formats = setupFormats();
 

@@ -9,6 +9,7 @@ import lombok.Getter;
 import net.exotia.plugins.lobby.command.CommandReload;
 import net.exotia.plugins.lobby.command.CommandServer;
 import net.exotia.plugins.lobby.command.CommandVanish;
+import net.exotia.plugins.lobby.command.argument.ArgumentServer;
 import net.exotia.plugins.lobby.configuration.ConfigurationFactory;
 import net.exotia.plugins.lobby.configuration.ConfigurationGui;
 import net.exotia.plugins.lobby.configuration.ConfigurationMessage;
@@ -19,6 +20,9 @@ import net.exotia.plugins.lobby.listener.ListenerChat;
 import net.exotia.plugins.lobby.listener.ListenerJoinQuit;
 import net.exotia.plugins.lobby.listener.ListenerKick;
 import net.exotia.plugins.lobby.listener.ListenerSpawn;
+import net.exotia.plugins.lobby.lobby.gui.GuiSelector;
+import net.exotia.plugins.lobby.lobby.player.VanishPlayers;
+import net.exotia.plugins.lobby.lobby.server.BungeeChannel;
 import net.exotia.plugins.lobby.utils.UtilMessage;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import org.bukkit.Bukkit;
@@ -34,6 +38,7 @@ public final class LobbyPlugin extends JavaPlugin {
     private static Plugin plugin;
     @Getter
     private static BukkitAudiences audiences;
+    private VanishPlayers vanishPlayers;
     private final ConfigurationFactory configurationFactory = new ConfigurationFactory(this.getDataFolder());
     private ConfigurationPlugin configurationPlugin;
     private ConfigurationMessage configurationMessage;
@@ -71,12 +76,18 @@ public final class LobbyPlugin extends JavaPlugin {
 
     private void setupUtils() {
         getServer().getMessenger().registerOutgoingPluginChannel(plugin, "BungeeCord");
+
+        vanishPlayers = new VanishPlayers();
+        injector.registerInjectable(vanishPlayers);
+        injector.registerInjectable(injector.createInstance(BungeeChannel.class));
+        injector.registerInjectable(injector.createInstance(GuiSelector.class));
     }
 
     private void setupCommands() {
         LiteBukkitFactory.builder(this.getServer(), "exotia.net")
                 .argument(Player.class, new BukkitPlayerArgument<>(this.getServer(), UtilMessage.getMessage(configurationMessage.getCommandsPlayer().getOffline())))
                 .contextualBind(Player.class, new BukkitOnlyPlayerContextual<>(UtilMessage.getMessage(configurationMessage.getCommandsPlayer().getOnly())))
+                .argument(String.class, ArgumentServer.KEY, injector.createInstance(ArgumentServer.class))
                 .commandInstance(
                         injector.createInstance(CommandReload.class),
                         injector.createInstance(CommandServer.class),
@@ -98,6 +109,7 @@ public final class LobbyPlugin extends JavaPlugin {
 
     private void cleanUp() {
         getServer().getMessenger().unregisterOutgoingPluginChannel(this);
+        vanishPlayers.clear();
 
         configurationPlugin.save();
         configurationMessage.save();

@@ -19,14 +19,14 @@ public class ListenerChat implements Listener {
     @EventHandler
     public void onChatEvent(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if (player.hasPermission("exotia.lobby.chat")) {
-            String color = configurationPlugin.getFormats().get(PlaceholderAPI.setPlaceholders(player, "%vault_group%")) != null ? configurationPlugin.getFormats().get(PlaceholderAPI.setPlaceholders(player, "%vault_group%")) : "";
-            String formattedMessage = UtilMessage.getMessage(player, configurationMessage.getEventsChat().getSuccess(), player.getDisplayName(), color, event.getMessage());
-            event.setFormat(formattedMessage);
+        if (!player.hasPermission("exotia.lobby.chat")) {
+            event.setCancelled(true);
+            UtilMessage.sendMessage(player, configurationMessage.getEventsChat().getFailed());
+            UtilMessage.playSound(player, configurationMessage.getSounds().getError());
             return;
         }
-        event.setCancelled(true);
-        UtilMessage.sendMessage(player, configurationMessage.getEventsChat().getFailed());
-        UtilMessage.playSound(player, configurationMessage.getSounds().getError());
+        String color = configurationPlugin.getFormats().get(PlaceholderAPI.setPlaceholders(player, "%vault_group%")) != null ? configurationPlugin.getFormats().get(PlaceholderAPI.setPlaceholders(player, "%vault_group%")) : "";
+        String formattedMessage = UtilMessage.getMessage(player, configurationMessage.getEventsChat().getSuccess(), player.getDisplayName(), color, event.getMessage());
+        event.setFormat(formattedMessage);
     }
 }

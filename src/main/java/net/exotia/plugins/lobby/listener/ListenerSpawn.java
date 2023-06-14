@@ -10,11 +10,9 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.hanging.HangingPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -116,6 +114,11 @@ public class ListenerSpawn implements Listener {
     }
 
     @EventHandler
+    public void onPlayerBlockBreak(BlockBreakEvent event) {
+        if (!event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
+    }
+
+    @EventHandler
     public void onPlayerWaterFill(PlayerBucketFillEvent event) {
         if (!event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
     }
@@ -138,6 +141,12 @@ public class ListenerSpawn implements Listener {
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
         if (!event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
+    }
+
+    @EventHandler
+    public void onPlayerDropItem(EntityPickupItemEvent event) {
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (!player.hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
     }
 
     @EventHandler

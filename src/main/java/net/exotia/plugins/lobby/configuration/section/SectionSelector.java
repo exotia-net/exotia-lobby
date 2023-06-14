@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 public class SectionSelector extends OkaeriConfig {
         private String title = "✟ꟹ";
-        private int size = 3;
+        private int size = 4;
         private List<Integer> slotsEmpty = new ArrayList<>();
         private HashMap<Integer, GuiButton> buttons = setupServerButtons();
 
@@ -28,7 +28,7 @@ public class SectionSelector extends OkaeriConfig {
                 .build()
         );
         buttons.put(2, GuiButton.builder()
-                .slots(List.of(18, 19, 20, 21, 22, 23, 24, 25, 26))
+                .slots(List.of(27, 28, 29, 30, 31, 32, 33, 34, 35))
                 .id("required_blank")
                 .type("oraxen")
                 .displayName("Kliknij, aby <gradient:#4fa943:#9ec52f><bold>dołączyć!</bold></gradient>")

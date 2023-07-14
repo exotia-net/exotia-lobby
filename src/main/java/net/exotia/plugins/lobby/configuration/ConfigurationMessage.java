@@ -25,7 +25,9 @@ public class ConfigurationMessage extends OkaeriConfig {
     @Comment("Disconnect Events")
     private EventsChat eventsChat = new EventsChat();
     @Comment("Link Events")
-    private String eventsLink = "鱂 %value_1%";
+    private String eventsLink = "%value_1%";
+    @Comment("Command Events")
+    private String eventsCommand = "鱂 Dołączyłeś/aś do <gradient:#4fa943:#9ec52f><bold>kolejki!</bold></gradient>";
     @Comment("Sounds")
     private Sounds sounds = new Sounds();
 

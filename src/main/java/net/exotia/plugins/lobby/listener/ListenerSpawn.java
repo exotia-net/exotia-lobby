@@ -1,11 +1,10 @@
 package net.exotia.plugins.lobby.listener;
 
 import eu.okaeri.injector.annotation.Inject;
-import io.th0rgal.oraxen.api.events.OraxenFurnitureBreakEvent;
-import io.th0rgal.oraxen.api.events.OraxenFurniturePlaceEvent;
+import io.th0rgal.oraxen.api.events.furniture.OraxenFurnitureBreakEvent;
+import io.th0rgal.oraxen.api.events.furniture.OraxenFurniturePlaceEvent;
 import net.exotia.plugins.lobby.configuration.ConfigurationPlugin;
 import org.bukkit.GameRule;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

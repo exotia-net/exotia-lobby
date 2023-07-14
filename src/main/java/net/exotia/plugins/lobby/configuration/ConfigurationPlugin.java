@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 public class ConfigurationPlugin extends OkaeriConfig {
     @Comment("Spawn")
-    private Location location = new Location(Bukkit.getWorld("world"), -4.5, 63.0, -1.5, 180, -5);
+    private Location location = new Location(Bukkit.getWorld("world"), 89.5, 67.0, 49.5, 90, 3);
     @Comment("Limit")
     private int limit = 45;
     @Comment("Server list")

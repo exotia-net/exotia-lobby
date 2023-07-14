@@ -7,6 +7,7 @@ import lombok.Getter;
 import net.exotia.plugins.lobby.configuration.ConfigurationMessage;
 import net.exotia.plugins.lobby.lobby.server.BungeeChannel;
 import net.exotia.plugins.lobby.utils.UtilMessage;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 @Builder
@@ -29,6 +30,19 @@ public class GuiAction extends OkaeriConfig {
             public void runAction(Player player, String value, ConfigurationMessage configurationMessage, BungeeChannel bungeeChannel) {
                 UtilMessage.sendMessage(player, configurationMessage.getEventsLink(), value);
                 UtilMessage.playSound(player, configurationMessage.getSounds().getClick());
+                player.closeInventory();
+            }
+        },
+        COMMAND {
+            public void runAction(Player player, String value, ConfigurationMessage configurationMessage, BungeeChannel bungeeChannel) {
+                if (!player.hasPermission("exotia.lobby.server." + value.replace("queue ", ""))) {
+                    UtilMessage.sendMessage(player, configurationMessage.getCommandsServer().getInvalid());
+                    UtilMessage.playSound(player, configurationMessage.getSounds().getError());
+                    return;
+                }
+                UtilMessage.sendMessage(player, configurationMessage.getEventsCommand());
+                UtilMessage.playSound(player, configurationMessage.getSounds().getClick());
+                Bukkit.dispatchCommand(player, value);
                 player.closeInventory();
             }
         };

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter
 public class SectionSelector extends OkaeriConfig {
-        private String title = "✟ꟹ";
+        private String title = "<shift:-8><glyph:menu_selector>";
         private int size = 4;
         private List<Integer> slotsEmpty = new ArrayList<>();
         private HashMap<Integer, GuiButton> buttons = setupServerButtons();

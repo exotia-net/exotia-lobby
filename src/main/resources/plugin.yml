@@ -1,8 +1,8 @@
 name: ExotiaLobby
-version: 1.1
+version: 1.2
 author: exotia.net Team
 website: https://exotia.net/
-description: Spigot Plugin for Exotia.net Lobbies
+description: Minecraft Paper plugin for exotia.net lobbies
 main: net.exotia.plugins.lobby.LobbyPlugin
-api-version: 1.19
+api-version: 1.20
 softdepend: [ PlaceholderAPI, Oraxen ]

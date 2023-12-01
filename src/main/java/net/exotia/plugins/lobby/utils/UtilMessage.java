@@ -1,11 +1,9 @@
 package net.exotia.plugins.lobby.utils;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import net.exotia.plugins.lobby.LobbyPlugin;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.kyori.adventure.title.Title;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -20,11 +18,11 @@ public class UtilMessage {
     }
 
     public static void sendMessage(CommandSender sender, String message, String... values) {
-        LobbyPlugin.getAudiences().sender(sender).sendMessage(replacePlaceholders(message, values));
+        sender.sendMessage(replacePlaceholders(message, values));
     }
 
     public static void sendMessage(Player player, String message, String... values) {
-        LobbyPlugin.getAudiences().player(player).sendMessage(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
+        player.sendMessage(replacePlaceholders(PlaceholderAPI.setPlaceholders(player, message), values));
     }
 
     public static String getMessage(String message) {
@@ -45,7 +43,9 @@ public class UtilMessage {
 
     public static List<String> convertComponent(List<String> list, String... values) {
         List<String> newList = new ArrayList<>();
-        for (String line : list) newList.add(LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<gray>" + line, values)));
+        for (String line : list) {
+            newList.add(LegacyComponentSerializer.legacySection().serialize(replacePlaceholders("<gray>" + line, values)));
+        }
         return newList;
     }
 

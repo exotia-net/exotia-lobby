@@ -1,41 +1,44 @@
 package net.exotia.plugins.lobby.command.argument;
 
-import dev.rollczi.litecommands.argument.ArgumentName;
-import dev.rollczi.litecommands.argument.simple.OneArgument;
-import dev.rollczi.litecommands.command.LiteInvocation;
-import dev.rollczi.litecommands.suggestion.Suggestion;
+import dev.rollczi.litecommands.argument.Argument;
+import dev.rollczi.litecommands.argument.parser.ParseResult;
+import dev.rollczi.litecommands.argument.resolver.ArgumentResolver;
+import dev.rollczi.litecommands.invocation.Invocation;
+import dev.rollczi.litecommands.suggestion.SuggestionContext;
+import dev.rollczi.litecommands.suggestion.SuggestionResult;
 import eu.okaeri.injector.annotation.Inject;
 import net.exotia.plugins.lobby.configuration.ConfigurationMessage;
 import net.exotia.plugins.lobby.configuration.ConfigurationPlugin;
 import net.exotia.plugins.lobby.utils.UtilMessage;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import panda.std.Option;
-import panda.std.Result;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
-@ArgumentName("server")
-public class ArgumentServer implements OneArgument<String> {
+public class ArgumentServer extends ArgumentResolver<CommandSender, String> {
     @Inject
     private ConfigurationPlugin configurationPlugin;
     @Inject
     private ConfigurationMessage configurationMessage;
-    public static final String KEY = "server_name";
 
     @Override
-    public Result<String, ?> parse(LiteInvocation liteInvocation, String s) {
-        String argument = configurationPlugin.getServerList().stream().filter(string -> string.equals(s)).findFirst().orElse(null);
-        if (argument == null) UtilMessage.playSound((Player) liteInvocation.sender().getHandle(), configurationMessage.getSounds().getError());
-        return Option.of(argument).toResult(UtilMessage.getMessage(configurationMessage.getCommandsServer().getNotFound()));
+    protected ParseResult<String> parse(Invocation invocation, Argument context, String argument) {
+        String serverName = configurationPlugin.getServerList()
+                .stream().filter(string -> string.equals(argument))
+                .findFirst().orElse(null);
+
+        if (serverName == null && invocation.sender() instanceof Player player) {
+            UtilMessage.playSound(player, configurationMessage.getSounds().getError());
+            UtilMessage.sendMessage(player, configurationMessage.getCommandsServer().getNotFound());
+        }
+
+        return ParseResult.success(serverName);
     }
 
     @Override
-    public List<Suggestion> suggest(LiteInvocation invocation) {
-        List<String> serverList = configurationPlugin.getServerList();
-        return serverList.stream()
-            .filter(string -> invocation.sender().hasPermission("exotia.lobby.server." + string))
-            .map(Suggestion::of)
-            .collect(Collectors.toList());
+    public SuggestionResult suggest(Invocation invocation, Argument argument, SuggestionContext context) {
+        return SuggestionResult.of(configurationPlugin.getServerList()
+                .stream().filter(string -> invocation.platformSender().hasPermission("exotia.lobby.server." + string))
+                .collect(Collectors.toList()));
     }
 }

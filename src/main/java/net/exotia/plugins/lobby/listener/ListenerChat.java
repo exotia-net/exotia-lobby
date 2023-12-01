@@ -1,6 +1,7 @@
 package net.exotia.plugins.lobby.listener;
 
 import eu.okaeri.injector.annotation.Inject;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.exotia.plugins.lobby.configuration.ConfigurationMessage;
 import net.exotia.plugins.lobby.configuration.ConfigurationPlugin;
@@ -8,7 +9,6 @@ import net.exotia.plugins.lobby.utils.UtilMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class ListenerChat implements Listener {
     @Inject
@@ -17,16 +17,17 @@ public class ListenerChat implements Listener {
     private ConfigurationMessage configurationMessage;
 
     @EventHandler
-    public void onChatEvent(AsyncPlayerChatEvent event) {
+    public void onChatEvent(AsyncChatEvent event) {
         Player player = event.getPlayer();
+
         if (!player.hasPermission("exotia.lobby.chat")) {
             event.setCancelled(true);
             UtilMessage.sendMessage(player, configurationMessage.getEventsChat().getFailed());
             UtilMessage.playSound(player, configurationMessage.getSounds().getError());
             return;
         }
+
         String color = configurationPlugin.getFormats().get(PlaceholderAPI.setPlaceholders(player, "%vault_group%")) != null ? configurationPlugin.getFormats().get(PlaceholderAPI.setPlaceholders(player, "%vault_group%")) : "";
-        String formattedMessage = UtilMessage.getMessage(player, configurationMessage.getEventsChat().getSuccess(), player.getDisplayName(), color, event.getMessage());
-        event.setFormat(formattedMessage);
+        event.message(UtilMessage.getComponent(player, configurationMessage.getEventsChat().getSuccess(), player.getDisplayName(), color, event.message().toString()));
     }
 }

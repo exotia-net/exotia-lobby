@@ -14,7 +14,8 @@ public class ListenerKick implements Listener {
     @EventHandler
     public void onPlayerKick(PlayerKickEvent event) {
         if (event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
-        if (!event.getReason().equals("You have been idle for too long!")) return;
-        event.setReason(UtilMessage.getMessage(event.getPlayer(), configurationMessage.getEventsDisonnect().getTimeout()));
+        if (!event.reason().toString().equals("You have been idle for too long!")) return;
+
+        event.reason(UtilMessage.getComponent(event.getPlayer(), configurationMessage.getEventsDisonnect().getTimeout()));
     }
 }

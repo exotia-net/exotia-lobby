@@ -1,8 +1,6 @@
 package net.exotia.plugins.lobby.listener;
 
 import eu.okaeri.injector.annotation.Inject;
-import io.th0rgal.oraxen.api.events.furniture.OraxenFurnitureBreakEvent;
-import io.th0rgal.oraxen.api.events.furniture.OraxenFurniturePlaceEvent;
 import net.exotia.plugins.lobby.configuration.ConfigurationPlugin;
 import org.bukkit.GameRule;
 import org.bukkit.World;
@@ -127,15 +125,15 @@ public class ListenerSpawn implements Listener {
         if (!event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
     }
 
-    @EventHandler
-    public void onOraxenBlocksBreak(OraxenFurnitureBreakEvent event) {
-        if (!event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
-    }
-
-    @EventHandler
-    public void onOraxenBlocksPlace(OraxenFurniturePlaceEvent event) {
-        if (!event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
-    }
+//    @EventHandler
+//    public void onOraxenBlocksBreak(OraxenFurnitureBreakEvent event) {
+//        if (!event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
+//    }
+//
+//    @EventHandler
+//    public void onOraxenBlocksPlace(OraxenFurniturePlaceEvent event) {
+//        if (!event.getPlayer().hasPermission("exotia.lobby.bypass")) event.setCancelled(true);
+//    }
 
     @EventHandler
     public void onPlayerDropItem(PlayerDropItemEvent event) {
